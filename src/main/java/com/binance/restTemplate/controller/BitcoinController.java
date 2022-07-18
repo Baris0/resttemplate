@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/v1/bitcoin")
 @RequiredArgsConstructor
@@ -19,5 +21,10 @@ public class BitcoinController {
     @GetMapping("/avgPrice/{symbol}")
     public ResponseEntity<AvgPriceDto> getAvgPrice(@PathVariable("symbol") String symbol) {
         return ResponseEntity.ok(bitcoinService.getAvgPrice(symbol));
+    }
+
+    @GetMapping("/get-avgPrice")
+    public List<AvgPriceDto> getAllAvgPrice() {
+        return bitcoinService.getAllAvgPrice();
     }
 }
